@@ -21,10 +21,10 @@
 body { font-family:'Noto Sans KR',sans-serif; background:#0D1B2E; color:var(--text); min-height:100vh; overflow-x:hidden; }
 
 /* ── LAYOUT ── */
-.site-wrapper { display:flex; min-height:100vh; }
+.site-wrapper { display:flex; height:100vh; overflow:hidden; }
 
 /* LEFT */
-.left-panel { flex:1; overflow-y:auto; background:linear-gradient(160deg,#0D1B2E 0%,#112240 60%,#0F2544 100%); position:relative; }
+.left-panel { flex:1; overflow-y:auto; background:linear-gradient(160deg,#0D1B2E 0%,#112240 60%,#0F2544 100%); position:relative; height:100vh; }
 .left-panel::before { content:''; position:fixed; top:0; left:0; width:calc(100vw - 430px); height:3px; background:linear-gradient(90deg,var(--accent),#63b3ed,var(--accent)); z-index:10; }
 
 /* RIGHT */
@@ -44,8 +44,8 @@ body { font-family:'Noto Sans KR',sans-serif; background:#0D1B2E; color:var(--te
 .nav-logo-icon { width:32px; height:32px; border-radius:9px; background:linear-gradient(135deg,var(--accent),#63b3ed); display:flex; align-items:center; justify-content:center; font-size:15px; }
 .nav-logo-text { font-size:17px; font-weight:800; color:#fff; letter-spacing:1px; }
 .nav-logo-sub { font-size:9px; color:rgba(255,255,255,0.45); margin-top:1px; }
-.nav-links { display:flex; gap:24px; }
-.nav-link { color:rgba(255,255,255,0.5); font-size:12px; font-weight:600; text-decoration:none; cursor:pointer; transition:color 0.2s; }
+.nav-links { display:flex; gap:24px; align-items:center; }
+.nav-link { background:none; border:none; color:rgba(255,255,255,0.5); font-size:12px; font-weight:600; font-family:'Noto Sans KR',sans-serif; text-decoration:none; cursor:pointer; transition:color 0.2s; line-height:1; padding:0; }
 .nav-link:hover { color:#fff; }
 
 /* ── HERO ── */
@@ -121,7 +121,16 @@ body { font-family:'Noto Sans KR',sans-serif; background:#0D1B2E; color:var(--te
 .rm-step-num { width:19px; height:19px; flex-shrink:0; background:var(--accent); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:800; }
 .rm-step p { font-size:10px; color:rgba(255,255,255,0.58); line-height:1.6; margin:0; padding-top:1px; }
 
-/* ── PHONE FRAME ── */
+/* ── SLIDES CARD ── */
+.slides-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.10); border-radius:14px; padding:22px 24px; display:flex; align-items:center; gap:18px; transition:all 0.2s; }
+.slides-card:hover { background:rgba(74,127,212,0.08); border-color:rgba(74,127,212,0.3); }
+.slides-icon { font-size:36px; flex-shrink:0; }
+.slides-info { flex:1; }
+.slides-title { font-size:15px; font-weight:700; color:#fff; margin-bottom:4px; }
+.slides-meta { font-size:11px; color:rgba(255,255,255,0.45); }
+.slides-download-btn { flex-shrink:0; padding:10px 20px; background:var(--accent); color:#fff; border-radius:9px; font-size:12px; font-weight:700; text-decoration:none; font-family:'Noto Sans KR',sans-serif; transition:all 0.2s; white-space:nowrap; }
+.slides-download-btn:hover { background:#2952A3; }
+.nav-link-slides { color:var(--accent) !important; border:1px solid rgba(74,127,212,0.35); border-radius:6px; padding:4px 10px; }
 .phone-frame { width:355px; height:770px; background:var(--bg); border-radius:42px; overflow:hidden; position:relative; box-shadow:0 40px 80px rgba(0,0,0,0.65),inset 0 0 0 1.5px rgba(255,255,255,0.18),0 0 0 7px #141e2e,0 0 0 8px rgba(255,255,255,0.04); }
 
 /* ── APP SCREENS ── */
@@ -171,9 +180,9 @@ body { font-family:'Noto Sans KR',sans-serif; background:#0D1B2E; color:var(--te
 .btn-primary:disabled { background:#B0BCD6; cursor:not-allowed; }
 
 /* Result */
-.result-img-container { background:var(--primary); padding:20px; display:flex; justify-content:center; }
+.result-img-container { background:var(--primary); padding:20px 20px 0; display:flex; justify-content:center; margin:14px 16px 0; border-radius:var(--radius) var(--radius) 0 0; }
 .ulcer-visual { width:160px; height:160px; border-radius:50%; background:radial-gradient(circle at 50%,#7B0000 0%,#B22222 25%,#CD5C5C 50%,#D2856A 70%,#E8C4AA 85%,#F5D5C0 100%); box-shadow:0 0 38px rgba(0,0,0,0.4); border:3px solid rgba(255,255,255,0.12); }
-.result-badge { margin:0 16px; background:var(--primary); border-radius:var(--radius); padding:14px 16px; color:#fff; display:flex; align-items:center; justify-content:space-between; margin-top:-1px; }
+.result-badge { margin:0 16px; background:var(--primary); border-radius:0 0 var(--radius) var(--radius); padding:14px 16px 16px; color:#fff; display:flex; align-items:center; justify-content:space-between; }
 .result-badge h2 { font-size:18px; font-weight:800; }
 .confidence-pill { background:var(--success); color:#fff; padding:4px 10px; border-radius:20px; font-size:11px; font-weight:700; }
 .severity-bar-wrap { margin:12px 16px; }
@@ -322,14 +331,15 @@ body { font-family:'Noto Sans KR',sans-serif; background:#0D1B2E; color:var(--te
       <div><div class="nav-logo-text">AURA</div><div class="nav-logo-sub">AI Ulcer Recognition Assistant</div></div>
     </div>
     <div class="nav-links">
-      <a class="nav-link">개요</a>
-      <a class="nav-link">태스크</a>
-      <a class="nav-link">기능</a>
-      <a class="nav-link">팀</a>
+      <button class="nav-link" onclick="navScrollTo('sec-hero')">개요</button>
+      <button class="nav-link" onclick="navScrollTo('sec-tasks')">태스크</button>
+      <button class="nav-link" onclick="navScrollTo('sec-features')">기능</button>
+      <button class="nav-link" onclick="navScrollTo('sec-team')">팀</button>
+      <button class="nav-link nav-link-slides" onclick="navScrollTo('sec-slides')">발표자료</button>
     </div>
   </nav>
 
-  <div class="hero">
+  <div class="hero" id="sec-hero">
     <div class="hero-badge">간호정보시스템분석및설계 · 상처지킴이 팀</div>
     <h1>AU<span>R</span>A</h1>
     <div class="hero-sub">AI Ulcer Recognition Assistant</div>
@@ -343,7 +353,7 @@ body { font-family:'Noto Sans KR',sans-serif; background:#0D1B2E; color:var(--te
 
   <div class="divider"></div>
 
-  <div class="section">
+  <div class="section" id="sec-tasks">
     <div class="section-label">User Tasks</div>
     <div class="section-title">3가지 핵심 태스크</div>
     <p class="section-desc">프로토타입은 아래 3가지 태스크의 전체 사용자 흐름을 지원합니다.</p>
@@ -377,7 +387,7 @@ body { font-family:'Noto Sans KR',sans-serif; background:#0D1B2E; color:var(--te
 
   <div class="divider"></div>
 
-  <div class="section">
+  <div class="section" id="sec-features">
     <div class="section-label">Features</div>
     <div class="section-title">주요 기능</div>
     <p class="section-desc">Medium-fi 프로토타입에서 체험할 수 있는 핵심 기능들입니다.</p>
@@ -393,7 +403,7 @@ body { font-family:'Noto Sans KR',sans-serif; background:#0D1B2E; color:var(--te
 
   <div class="divider"></div>
 
-  <div class="section">
+  <div class="section" id="sec-team">
     <div class="section-label">Team</div>
     <div class="section-title">상처지킴이 팀</div>
     <p class="section-desc">간호정보시스템분석및설계 수업 팀 프로젝트</p>
@@ -401,6 +411,28 @@ body { font-family:'Noto Sans KR',sans-serif; background:#0D1B2E; color:var(--te
       <div class="team-card"><div class="team-avatar">정</div><h4>정승준</h4><p>jchong990315@snu.ac.kr</p></div>
       <div class="team-card"><div class="team-avatar">문</div><h4>문윤서</h4><p>ysmoon@snu.ac.kr</p></div>
       <div class="team-card"><div class="team-avatar">전</div><h4>전효정</h4><p>megiminho@snu.ac.kr</p></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section" id="sec-slides">
+    <div class="section-label">Presentation</div>
+    <div class="section-title">발표자료</div>
+    <p class="section-desc">AURA 프로젝트 발표 슬라이드를 다운로드할 수 있습니다.</p>
+    <div class="slides-card">
+      <div class="slides-info">
+        <div class="slides-title">AURA — 발표 슬라이드</div>
+        <div class="slides-meta">상처지킴이 팀 · 간호정보시스템분석및설계 · Assignment #7</div>
+      </div>
+      <a class="slides-download-btn" href="aura-presentation.pdf" download="AURA_발표자료.pdf">다운로드</a>
+    </div>
+    <div class="slides-card" style="margin-top:10px;">
+      <div class="slides-info">
+        <div class="slides-title">AURA — Medium-fi 프로토타입</div>
+        <div class="slides-meta">HTML 파일 · 브라우저에서 바로 실행 가능</div>
+      </div>
+      <button class="slides-download-btn" onclick="downloadPrototype()">다운로드</button>
     </div>
   </div>
 
@@ -452,7 +484,7 @@ body { font-family:'Noto Sans KR',sans-serif; background:#0D1B2E; color:var(--te
       <div class="top-nav"><button class="back-btn" onclick="go('screen-ulcer')">‹</button><h2>분석 결과</h2></div>
       <div class="result-img-container"><div class="ulcer-visual"></div></div>
       <div class="result-badge"><div><div style="font-size:10px;opacity:0.73;margin-bottom:2px;">AURA 분석 결과</div><h2>3단계 욕창</h2></div><div class="confidence-pill">신뢰도 92.4%</div></div>
-      <div class="severity-bar-wrap"><label>중증도</label><div class="severity-bar"><div class="severity-fill"></div></div></div>
+      <div class="severity-bar-wrap" style="margin-top:14px;"><div class="severity-bar"><div class="severity-fill"></div></div></div>
       <div class="evidence-tabs">
         <button class="evidence-tab active" onclick="switchEvidenceTab(0)">판별 근거</button>
         <button class="evidence-tab" onclick="switchEvidenceTab(1)">치료 권고</button>
@@ -726,6 +758,72 @@ dependencies {
 </div><!-- /site-wrapper -->
 
 <script>
+function downloadPrototype() {
+  // Extract only the phone frame content and app-related styles
+  const phoneFrame = document.querySelector('.phone-frame').outerHTML;
+
+  // Collect all CSS from the page's style tag
+  const allCSS = document.querySelector('style').innerHTML;
+
+  const standaloneHTML = `<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>AURA - AI Ulcer Recognition Assistant</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+${allCSS}
+body { margin:0; padding:0; background:#C8D8EC; display:flex; align-items:center; justify-content:center; min-height:100vh; font-family:'Noto Sans KR',sans-serif; }
+.site-wrapper, .left-panel, .right-panel, .right-tabbar, .readme-area { display:none !important; }
+</style>
+</head>
+<body>
+${phoneFrame}
+<script>
+let patientCount = 1;
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById(id).scrollTop=0;}
+function switchEvidenceTab(idx){document.querySelectorAll('.evidence-tab').forEach((b,i)=>b.classList.toggle('active',i===idx));document.querySelectorAll('.evidence-panel').forEach((p,i)=>p.classList.toggle('active',i===idx));}
+function openCamera(){document.getElementById('camera-overlay').classList.add('open');}
+function closeCamera(){document.getElementById('camera-overlay').classList.remove('open');}
+function takePhoto(){closeCamera();const f=document.createElement('div');f.style.cssText='position:absolute;inset:0;background:white;z-index:200;opacity:1;transition:opacity 0.3s;pointer-events:none;';document.querySelector('.phone-frame').appendChild(f);setTimeout(()=>{f.style.opacity='0';setTimeout(()=>f.remove(),300);},80);setUploaded('📷 카메라로 촬영된 사진');}
+const galleryColors=[['#8B0000','#CD5C5C'],['#2C3E50','#3498DB'],['#1A3A1A','#2ECC71'],['#4A0080','#9B59B6'],['#5C3A1A','#E67E22'],['#1A1A5C','#4A7FD4'],['#5C1A1A','#E74C3C'],['#1A4A4A','#1ABC9C'],['#3A3A1A','#F1C40F']];
+function openGallery(){const grid=document.getElementById('gallery-grid');if(!grid.children.length)galleryColors.forEach((c,i)=>{const t=document.createElement('div');t.className='gallery-thumb';const u=i===0||i===3||i===6;t.innerHTML=\`<svg class="gallery-thumb-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="\${c[0]}"/>\${u?\`<circle cx="50" cy="50" r="28" fill="\${c[1]}" opacity="0.8"/><circle cx="50" cy="50" r="14" fill="\${c[0]}" opacity="0.9"/>\`:\`<rect x="20" y="20" width="60" height="60" rx="8" fill="\${c[1]}" opacity="0.3"/>\`}</svg><div class="gallery-thumb-selected">✓</div>\`;t.onclick=()=>selThumb(i,t);grid.appendChild(t);});document.querySelectorAll('.gallery-thumb').forEach(t=>t.classList.remove('selected'));document.getElementById('gallery-confirm-btn').disabled=true;document.getElementById('gallery-overlay').classList.add('open');}
+function selThumb(idx,el){document.querySelectorAll('.gallery-thumb').forEach(t=>t.classList.remove('selected'));el.classList.add('selected');document.getElementById('gallery-confirm-btn').disabled=false;}
+function closeGallery(){document.getElementById('gallery-overlay').classList.remove('open');}
+function confirmGallery(){closeGallery();setUploaded('🖼️ 갤러리에서 선택된 사진');}
+function startAnalysis(){const o=document.getElementById('analyzing-overlay');o.classList.add('open');setTimeout(()=>{o.classList.remove('open');go('screen-result');},2400);}
+function setUploaded(label){document.getElementById('upload-area').innerHTML=\`<svg width="85" height="85" viewBox="0 0 100 100" style="border-radius:50%;margin-bottom:8px;" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#7B0000"/><circle cx="50" cy="50" r="30" fill="#B22222" opacity="0.85"/><circle cx="50" cy="50" r="14" fill="#7B0000" opacity="0.9"/></svg><h3 style="color:var(--primary)">\${label}</h3><p style="color:var(--text2);font-size:10px;">분석 버튼을 눌러 분석을 시작하세요</p>\`;document.getElementById('analyze-btn').disabled=false;}
+function setReminderInterval(h){document.querySelectorAll('.interval-btn').forEach(b=>b.classList.toggle('active',b.textContent===h+'시간'));document.getElementById('current-interval-display').innerHTML=h+' <span>시간</span>';showToast(h+'시간 간격으로 설정되었습니다');}
+function openModal(){document.getElementById('add-modal').classList.add('open');}
+function closeModal(){document.getElementById('add-modal').classList.remove('open');}
+function addPatient(){const name=document.getElementById('input-name').value.trim();const gender=document.getElementById('input-gender').value;const age=document.getElementById('input-age').value;const room=document.getElementById('input-room').value.trim();const diagnosis=document.getElementById('input-diagnosis').value.trim()||'진단명 없음';if(!name||!age||!room){showToast('이름, 나이, 호수를 입력해 주세요');return;}patientCount++;const pd={name,gender,age,room,diagnosis};const item=document.createElement('div');item.className='patient-item';item.innerHTML=\`<div class="patient-avatar" style="background:var(--accent-soft);color:var(--primary);">\${name.charAt(0)}</div><div class="patient-info"><h3>\${name}</h3><p>\${gender} · \${age}세 · \${room} · \${diagnosis}</p></div><div class="patient-status">관리중</div>\`;item.onclick=()=>loadPatientDetail(pd);document.getElementById('patient-list').appendChild(item);document.getElementById('patient-count').textContent='관리 중인 환자 '+patientCount+'명';closeModal();showToast(name+' 환자가 추가되었습니다 ✓');['input-name','input-age','input-room','input-diagnosis'].forEach(id=>document.getElementById(id).value='');}
+function loadPatientDetail(p){document.getElementById('detail-avatar').textContent=p.name.charAt(0);document.getElementById('detail-name').textContent=p.name;document.getElementById('detail-info').textContent=\`\${p.gender} · \${p.age}세 · \${p.room} · \${p.diagnosis}\`;document.getElementById('guide-intro').innerHTML=\`\${p.name} 환자는 <strong>\${p.diagnosis}</strong> 환자입니다.<br>아래 순서에 따라 2시간 간격으로 체위를 변경해 주세요.\`;document.getElementById('guardian-name-display').textContent=\`설정된 주기마다 \${p.name} 환자 보호자 스마트폰으로 알림이 발송됩니다.\`;go('screen-patient-detail');}
+document.getElementById('add-modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+<\/script>
+</body>
+</html>`;
+
+  const blob = new Blob([standaloneHTML], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'AURA_프로토타입.html';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function navScrollTo(id) {
+  const el = document.getElementById(id);
+  const panel = document.querySelector('.left-panel');
+  if (!el || !panel) return;
+  const panelRect = panel.getBoundingClientRect();
+  const elRect = el.getBoundingClientRect();
+  const offset = panel.scrollTop + (elRect.top - panelRect.top) - 64;
+  panel.scrollTo({ top: offset, behavior: 'smooth' });
+}
+
 function switchTab2(tab) {
   const pa = document.getElementById('phone-area');
   const ra = document.getElementById('readme-area');
